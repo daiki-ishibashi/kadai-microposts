@@ -190,7 +190,7 @@ return [
     |
     */
 
-    'aliases' => [
+'aliases' => [
 
         'App'       => Illuminate\Support\Facades\App::class,
         'Artisan'   => Illuminate\Support\Facades\Artisan::class,
@@ -228,5 +228,4 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
     ],
-
-];
+];    
