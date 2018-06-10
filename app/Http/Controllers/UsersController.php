@@ -23,8 +23,8 @@ class UsersController extends Controller
    public function show($id)
     {
         $user = User::find($id);
-        $microposts = $user->microposts()->orderBy('created_at', 'desc')->paginate(10);
-
+        $microposts = $user->feed_microposts()->orderBy('created_at', 'desc')->paginate(10);
+        // feed_micropostsでタイムラインの表示している。
         $data = [
             'user' => $user,
             'microposts' => $microposts,
@@ -63,5 +63,20 @@ class UsersController extends Controller
         $data += $this->counts($user);
 
         return view('users.followers', $data);
+    }
+    
+     public function favorites($id)
+    {
+        $user = User::find($id);
+        $favorites = $user->favorites()->paginate(10);
+
+        $data = [
+            'user' => $user,
+            'favorites' => $favorites,
+        ];
+
+        $data += $this->counts($user);
+
+        return view('microposts.favorites', $data);
     }
 }
