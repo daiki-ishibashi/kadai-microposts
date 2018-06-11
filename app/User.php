@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use App\Micropost;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -88,12 +90,9 @@ public function unfollow($userId)
         return Micropost::whereIn('user_id', $follow_user_ids);
     }
 
-    
-    
-    
     public function favorites()
     {
-        return $this->belongsToMany(User::class, 'user_favorite', 'user_id', 'favorite_id')->withTimestamps();
+        return $this->belongsToMany(Micropost::class, 'user_favorite', 'user_id', 'favorite_id')->withTimestamps();
     }
     
     public function favorite($favoriteId)
